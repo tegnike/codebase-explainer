@@ -145,7 +145,7 @@
 
 # File Descriptions
 
-## /Users/user/WorkSpace/nike-ChatVRM/tailwind.config.js
+## tailwind.config.js
 
 ### File Description
 このファイルは、Tailwind CSSのカスタム設定を定義しています。テーマカラーやフォントファミリーなどをカスタマイズし、それらをTailwind CSSで利用できるようにしています。
@@ -158,7 +158,7 @@
 このファイルには関数の定義はありません。代わりに、Tailwind CSSの設定オブジェクトを`module.exports`としてエクスポートしています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/LICENSE
+## LICENSE
 
 ### File Description
 このファイルには、MITライセンスの完全なテキストが含まれています。MITライセンスはソフトウェアの自由な使用、コピー、変更、配布などを許可する許諾型のオープンソースライセンスです。
@@ -170,7 +170,7 @@
 なし
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/Dockerfile
+## Dockerfile
 
 ### File Description
 この Dockerfileは、Node.js アプリケーションをDockerコンテナ内で実行するための設定ファイルです。Node.js のバージョン 16 を使用し、アプリケーションのソースコードとパッケージ依存関係をコンテナにコピーし、アプリケーションをビルドしてから実行します。
@@ -191,7 +191,7 @@
 - `CMD ["npm", "start"]`: コンテナ起動時に `npm start` コマンドを実行することを指定しています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/next.config.js
+## next.config.js
 
 ### File Description
 このファイルは、Next.jsアプリケーションの設定を定義するための構成ファイルです。Next.jsの動作を制御するための様々なオプションが設定されています。
@@ -212,7 +212,7 @@
 最後に、`module.exports = nextConfig`により、定義した構成オブジェクトがエクスポートされます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/electron.mjs
+## electron.mjs
 
 ### File Description
 このファイルは、Electronアプリケーションのメインプロセスを設定するためのコードです。ウィンドウの作成、サイズの設定、開発モードと本番モードでの動作の切り替えなどの機能を提供しています。
@@ -228,7 +228,7 @@
 - `createWindow()`: メインウィンドウを作成し、開発モードと本番モードに応じて適切なURLからコンテンツを読み込みます。ウィンドウのサイズ、透明度、フレームの有無などのオプションも設定できます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/test.py
+## test.py
 
 ### File Description
 このスクリプトは、JSONファイルのキーを文字列の長さで降順にソートし、新しいJSONファイルに書き込みます。ソートされたJSONオブジェクトは、OrderedDictを使って保持されるため、キーの順序が維持されます。
@@ -242,7 +242,7 @@
   - 指定された入力JSONファイルを読み込み、キーを長さで降順にソートします。その後、ソートされたJSONデータを新しい出力JSONファイルに書き込みます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/README.md
+## README.md
 
 ### File Description
 このファイルは、AITuberキットのリポジトリの README ファイルです。AITuberキットは、AI キャラクターを使った会話や配信ができるアプリケーションです。アプリケーションの概要、使用方法、設定方法などが記載されています。
@@ -254,7 +254,7 @@
 このファイルには関数の定義はありません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/.gitignore
+## .gitignore
 
 ### File Description
 このファイルは、Gitリポジトリから無視するファイルやディレクトリを指定するための `.gitignore` ファイルです。特定のファイルやディレクトリをリポジトリに含めないことで、リポジトリのサイズを小さく保つことができます。
@@ -277,7 +277,7 @@
 - `.tool-versions`: asdfバージョン管理ツールの設定ファイル
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/package.json
+## package.json
 
 ### File Description
 このファイルは、Next.js と Electron を使用した Chat-VRM アプリケーションのパッケージ構成を定義しています。スクリプトとして開発用、ビルド用、実行用、エクスポート用、リント用などが含まれています。また、必要な依存関係とDevDependenciesが列挙されています。
@@ -289,7 +289,7 @@
 なし (このファイルでは関数を定義していません)
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/.env
+## .env
 
 このファイルには関数定義や特定のモジュールのインポートはありません。代わりに、環境変数の設定が含まれています。
 
@@ -303,7 +303,7 @@
 なし
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/watch.json
+## watch.json
 
 この内容はJSONファイルのようですね。ファイル内には関数やモジュールのインポートはありません。代わりに、JSONオブジェクトが定義されています。
 
@@ -317,7 +317,7 @@
 なし
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/tsconfig.json
+## tsconfig.json
 
 ### File Description
 このファイルは、TypeScriptプロジェクトの設定を定義するTSConfigファイルです。コンパイラオプションやインクルード/エクスクルードするファイルの設定などが含まれています。
@@ -335,7 +335,7 @@
 各プロパティの詳細は、TypeScriptの公式ドキュメントを参照してください。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docker-compose.yml
+## docker-compose.yml
 
 ### File Description
 このファイルはDockerコンポーズファイルで、Docker環境におけるサービスの構成を定義しています。単一のアプリケーションサービスが設定されており、ビルド、ポートマッピング、ボリュームマウント、環境変数ファイルの読み込みが指定されています。
@@ -347,7 +347,7 @@
 なし (このファイルは構成ファイルであり、関数の定義は含まれていません)
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/postcss.config.js
+## postcss.config.js
 
 ### File Description
 このファイルは、PostCSS（CSSプリプロセッサツール）の設定ファイルです。Tailwind CSSおよびAutoPrefixerプラグインを読み込んでいます。
@@ -359,7 +359,7 @@
 なし (このファイルには関数は定義されていません)
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/.eslintrc.json
+## .eslintrc.json
 
 ### File Description
 このファイルは、Next.jsアプリケーションにおいて、Coreウェブバイタルのルールを拡張するための設定ファイルです。Coreウェブバイタルとは、ウェブページのパフォーマンスを測定する重要な指標のことです。
@@ -371,7 +371,7 @@
 関数は定義されていません。このファイルは単に設定情報を含むJSONファイルです。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/locales/zh/translation.json
+## locales/zh/translation.json
 
 ### File Description
 このファイルには、Webアプリケーションの様々な設定オプションが含まれています。ユーザーインターフェイスの言語、音声合成エンジン、AIサービスの選択、キャラクターモデルの選択など、アプリケーションの動作を制御する設定項目があります。
@@ -383,7 +383,7 @@
 関数は定義されていません。このファイルはJSON形式の設定ファイルです。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/locales/ko/translation.json
+## locales/ko/translation.json
 
 このファイルは、多言語対応のWebアプリケーションの多数の設定値をJSON形式で定義しているようです。設定項目には、AI アシスタントの選択、APIキーの入力、キャラクターモデル、音声エンジンの選択、言語設定などがあります。
 
@@ -397,7 +397,7 @@
 関数の定義はありません。キーと値のペアで設定値が定義されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/locales/en/translation.json
+## locales/en/translation.json
 
 このファイルには実際のコードが含まれていないため、インポートされているモジュールや定義されている関数については説明できません。ただし、ファイルの内容を見ると、これは多言語対応のウェブアプリケーションの設定や文字列リソースを含むJSONファイルのようです。
 
@@ -411,7 +411,7 @@
 なし (JSONファイルなので関数は定義されていません)
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/vrm_licence_en.md
+## docs/vrm_licence_en.md
 
 ### File Description
 このファイルは、GitHub リポジトリ [aituber-kit](https://github.com/tegnike/aituber-kit) で提供されている VRM モデルの利用規約を定めています。利用が許可される範囲と、禁止事項、免責事項、規約の変更について説明しています。
@@ -423,7 +423,7 @@
 このファイルでは関数が定義されていません。このファイルは利用規約の文書であり、実行可能なコードではありません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/vrm_licence_zh.md
+## docs/vrm_licence_zh.md
 
 ### File Description
 このファイルは、aituber-kitリポジトリで提供されているVRMモデルの使用規約を記述したものです。モデルの著作権、使用が許可される場合と禁止される場合、免責事項、規約の変更について説明しています。
@@ -435,7 +435,7 @@
 関数は定義されていません。このファイルは使用規約を記述したドキュメントであり、コードは含まれていません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/logo_licence_ko.md
+## docs/logo_licence_ko.md
 
 ### File Description
 このファイルは、aituber-kitリポジトリで使用されているロゴの利用規約について説明しています。ロゴの著作権、許可される使用方法、禁止される使用方法、免責事項、規約の変更、連絡先などが記載されています。
@@ -447,7 +447,7 @@
 このファイルには関数が定義されていません。内容はロゴの利用規約に関する説明のみです。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/README_ko.md
+## docs/README_ko.md
 
 ### File Description
 このファイルは、AITuber Kitと呼ばれるアプリケーションのリポジトリの説明をしています。AI キャラクターとの対話、YouTubeライブ配信への対応、外部アプリケーションとの統合などの機能を備えています。
@@ -459,7 +459,7 @@
 このファイルには、関数の定義はありません。代わりに、このアプリケーションの概要や使用方法、設定の仕方などが説明されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/logo_licence_zh.md
+## docs/logo_licence_zh.md
 
 ### File Description
 このファイルは、aituber-kitリポジトリで使用されるトレードマークの使用条件を規定しています。トレードマークの著作権、許可された使用法、禁止された使用法、免責事項、利用規約の変更、連絡先などが記載されています。
@@ -471,7 +471,7 @@
 このファイルは利用規約の文書なので、関数は定義されていません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/docs/logo_licence_en.md
+## docs/logo_licence_en.md
 
 ### File Description
 このファイルは、[aituber-kit](https://github.com/tegnike/aituber-kit)リポジトリで使用されているロゴの利用規約を説明しています。ロゴの著作権、許可される使用方法、禁止される使用方法、免責事項、規約の変更、および問い合わせ先が記載されています。
@@ -483,7 +483,7 @@
 このファイルでは関数が定義されていません。主にロゴの利用規約に関する情報が記載されているテキストファイルです。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/public/github-mark-white.svg
+## public/github-mark-white.svg
 
 このファイルは、GitHubのロゴをSVGフォーマットで表現したものです。SVGはスケーラブル・ベクター・グラフィックスの略で、XMLベースのマークアップ言語を使用してベクター画像を記述するためのフォーマットです。
 
@@ -497,7 +497,7 @@
 このファイルには関数は定義されていません。SVGファイルは、XMLベースのマークアップ言語を使用してベクター画像を記述するためのフォーマットであり、関数は含まれていません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/.github/workflows/nextjs.yml
+## .github/workflows/nextjs.yml
 
 ### File Description
 このファイルはGitHub Actionsのワークフローファイルであり、Next.jsアプリケーションをGitHub Pagesにデプロイするための手順を定義しています。ソースコードのプッシュをトリガーにしてビルドとデプロイが実行されます。
@@ -513,7 +513,7 @@
 - **deploy**: buildジョブの成果物を使って、GitHub Pagesにデプロイを行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/emoteController/expressionController.ts
+## src/features/emoteController/expressionController.ts
 
 ### File Description
 このファイルは、VRMモデルの表情とリップシンクを管理するクラス `ExpressionController` を定義しています。表情の切り替えや、前の表情を0に戻すタイミングの制御、自動の目線追従や自動まばたきの機能を提供しています。
@@ -531,7 +531,7 @@
 - `update(delta)`: 毎フレーム呼び出され、自動まばたきとリップシンクの更新を行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/emoteController/emoteConstants.ts
+## src/features/emoteController/emoteConstants.ts
 
 ### File Description
 このファイルは、瞬きに関連する2つの定数を定義しています。一つは瞬きで目を閉じている最大時間、もう一つは瞬きで目を開いている最大時間を表します。
@@ -546,7 +546,7 @@
 - `BLINK_OPEN_MAX`: 瞬きで目を開いている最大時間(5秒)を表す定数
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/emoteController/autoLookAt.ts
+## src/features/emoteController/autoLookAt.ts
 
 ### File Description
 このファイルは、Three.jsとVRMを使用して、VRMモデルの目線を制御するクラスを提供しています。目線の動きは、VRMLookAtSmootherによって制御されますが、より大きな目線の動きが必要な場合は、このクラスに実装する必要があります。
@@ -559,7 +559,7 @@
 - `AutoLookAt`: VRMモデルの目線を制御するクラス。コンストラクタでVRMインスタンスとカメラオブジェクトを受け取り、目線の対象となるオブジェクトを作成します。VRMの`lookAt`プロパティがある場合、そのターゲットを設定します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/emoteController/autoBlink.ts
+## src/features/emoteController/autoBlink.ts
 
 ### File Description
 このファイルは、VRMモデルの自動瞬きを制御するクラス `AutoBlink` を定義しています。このクラスは、`VRMExpressionManager` を使用して、モデルの「blink」という表情パラメータを制御することで、自動的に瞬きを生成します。
@@ -576,7 +576,7 @@
 - **open()**: 瞬きを開く処理を行います。`blink` パラメータを0に設定し、次に目を閉じるまでの時間を計算します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/emoteController/emoteController.ts
+## src/features/emoteController/emoteController.ts
 
 ### File Description
 このファイルは、VRMモデルの表情表現と口の動きを制御するための機能を提供するクラスを定義しています。EmoteControllerクラスは、ExpressionControllerクラスをラップし、感情表現のプリセットを適用したり、口の動きを同期したりする機能を提供します。
@@ -593,7 +593,7 @@
 - `update(delta)`: 経過時間deltaに基づいて、表情の更新を行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/lipSync/lipSyncAnalyzeResult.ts
+## src/features/lipSync/lipSyncAnalyzeResult.ts
 
 ### File Description
 このファイルは、リップシンク分析の結果を表すインターフェースを定義しています。`LipSyncAnalyzeResult`インターフェースには、音量を表す`volume`プロパティがあります。
@@ -605,7 +605,7 @@
 このファイルには関数の定義がありません。`LipSyncAnalyzeResult`インターフェースのみが定義されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/lipSync/lipSync.ts
+## src/features/lipSync/lipSync.ts
 
 ### File Description
 このファイルは、Web Audio APIを使用して音声データを解析し、リップシンクロナイゼーションに必要な情報を抽出するためのクラスを提供しています。音声の再生と解析のための機能が含まれています。
@@ -620,7 +620,7 @@
 - `playFromURL(url: string, onEnded?: () => void)`: URLから音声データをフェッチし、ArrayBufferとしてデコードした後、再生します。再生が終了したときにコールバック関数を呼び出すこともできます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/messages/speakCharacter.ts
+## src/features/messages/speakCharacter.ts
 
 ### File Description
 このファイルは、様々な音声合成APIを使用して音声データを取得し、VRMモデルに話させるための機能を提供しています。英語から日本語への読み上げ変換、音声の調整、異なるAPIやパラメータの選択などの機能が含まれています。
@@ -647,7 +647,7 @@
 - `fetchAudioVoiceGSVIApi`: GSVI TTSサーバーから音声データを取得します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/messages/messages.ts
+## src/features/messages/messages.ts
 
 ### File Description
 このファイルは、テキストデータから感情表現と対話のペアを生成するための関数を提供しています。感情表現は、事前に定義された一連の表情プリセットから選択されます。対話は、音声合成のためのパラメータとテキストメッセージで構成されています。
@@ -662,7 +662,7 @@
 - `emotionToTalkStyle`: 感情表現を受け取り、対応する会話スタイル(talk、happy、sad、angry)を返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/messages/synthesizeStyleBertVITS2.ts
+## src/features/messages/synthesizeStyleBertVITS2.ts
 
 ### File Description
 このファイルは、StyleBertVITS2 APIを使用してテキストからオーディオファイルを合成する関数を提供しています。指定されたメッセージ、サーバーURL、モデルID、スタイル、言語を使用して、オーディオファイルを生成し、ArrayBufferオブジェクトとして返します。
@@ -677,7 +677,7 @@
   - エラーが発生した場合は、例外をスローします。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/messages/synthesizeVoiceGoogle.ts
+## src/features/messages/synthesizeVoiceGoogle.ts
 
 ### File Description
 このファイルには、GoogleのText-to-Speech (TTS) APIを使用してテキストから音声を生成する関数が含まれています。
@@ -690,7 +690,7 @@
 - `synthesizeVoiceGoogleApi(message: string, ttsType: string)`: 指定されたメッセージとTTSタイプを使用して、Google TTS APIを呼び出し、生成された音声データを取得します。この関数は非同期で実行され、音声データをPromiseとして返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/messages/synthesizeVoice.ts
+## src/features/messages/synthesizeVoice.ts
 
 ### File Description
 このファイルは、音声合成機能を提供するためのモジュールです。メッセージ、話者の特性、話し方のスタイルを指定して、対応する音声データを生成します。
@@ -705,7 +705,7 @@
 - `synthesizeVoiceApi`: APIキーを使用して、指定されたメッセージ、話者の特性、話し方のスタイル(無料版では制限あり)に基づいて音声データを合成し、返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/localLLMChat.ts
+## src/features/chat/localLLMChat.ts
 
 ### File Description
 このファイルは、ローカルのLanguage Model (LLM) APIにリクエストを送信し、ストリーミング方式で応答を取得する関数を提供しています。
@@ -720,7 +720,7 @@
   - 応答データをストリーミング形式で読み取り、JSONデータを解析して、LLMの応答を1文字ずつ返すReadableStreamを生成します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/anthropicChat.ts
+## src/features/chat/anthropicChat.ts
 
 ### File Description
 このファイルは、Anthropic APIを使用してチャットレスポンスを取得するための関数を提供しています。1つの関数は完全なレスポンスを取得し、もう1つの関数はストリーミングレスポンスを取得します。
@@ -734,7 +734,7 @@
 - `getAnthropicChatResponseStream(messages, apiKey, model)`: 指定されたメッセージ、APIキー、モデルを使用してAnthropicからストリーミングチャットレスポンスを取得する非同期関数。ストリームを返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/openAiChat.ts
+## src/features/chat/openAiChat.ts
 
 ### File Description
 このファイルは、OpenAI APIを使用してチャットの応答を生成するための関数を提供しています。応答は一括で取得するか、ストリーミングで取得することができます。
@@ -749,7 +749,7 @@
 - `getOpenAIChatResponseStream`: 指定されたメッセージ、APIキー、モデルを使用して、OpenAI APIからチャットの応答をストリーミングで取得する関数。応答はReadableStreamオブジェクトとして返されます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/googleChat.ts
+## src/features/chat/googleChat.ts
 
 ### File Description
 このファイルには、Google Generative AIを使用してチャットレスポンスを取得するための関数が含まれています。レスポンスをストリーミングで取得する機能も備えています。
@@ -764,7 +764,7 @@
 - `processMessages`: メッセージ履歴からシステムメッセージと履歴を抽出し、Google Generative AIの入力形式に変換する補助関数。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/groqChat.ts
+## src/features/chat/groqChat.ts
 
 ### File Description
 このファイルは、Groq APIとやり取りするための非同期関数を提供しています。getGroqChatResponseは単一のレスポンスを取得し、getGroqChatResponseStreamはストリームからレスポンスを取得します。
@@ -778,7 +778,7 @@
 - `getGroqChatResponseStream(messages, apiKey, model)`: 指定されたメッセージ、APIキー、モデルを使用して、Groq APIからストリームレスポンスを非同期的に取得します。受信したデータをバッファリングし、JSONオブジェクトの形式で返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/difyChat.ts
+## src/features/chat/difyChat.ts
 
 ### File Description
 このファイルは、APIキーとURLを使用して指定された会話IDとメッセージリストからDify Chatのレスポンスストリームを取得する関数を提供しています。レスポンスストリームを読み取り、新しい会話IDを設定する機能があります。
@@ -790,7 +790,7 @@
 - `getDifyChatResponseStream`: 与えられたメッセージ、APIキー、URL、会話ID、会話ID設定関数から、Dify Chatのレスポンススストリームを取得する非同期関数です。レスポンスを読み取り、新しい会話IDを設定することができます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/chat/aiChatFactory.ts
+## src/features/chat/aiChatFactory.ts
 
 ### File Description
 このファイルは、さまざまなAIサービスとやり取りするための機能を提供しています。AIサービスへの問い合わせを行い、そのレスポンスをストリームとして取得できます。サポートされているAIサービスは、OpenAI、Anthropic、Google、ローカルLLM、Groq、Difyfなどです。
@@ -808,7 +808,7 @@
 - `getAIChatResponseStream`: 指定されたAIサービスにメッセージを送信し、レスポンスをReadableStreamとして取得する関数。AIサービスの種類と設定情報に応じて、適切な関数を呼び出します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/constants/systemPromptConstants.ts
+## src/features/constants/systemPromptConstants.ts
 
 ### File Description
 このファイルは、ユーザーとの会話において、人工知能エージェントが感情を表現する方法を定義しています。感情は5つの種類があり、それぞれ異なる感情状態を表す文字列によって示されます。また、会話文の書式と例が示されています。
@@ -820,7 +820,7 @@
 このファイルには関数が定義されていません。代わりに、`SYSTEM_PROMPT`という変数が定義されており、その中に人工知能エージェントの動作方法と会話例が記述されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/constants/koeiroParam.ts
+## src/features/constants/koeiroParam.ts
 
 ### File Description
 このファイルでは、音声合成システムの設定を表すデータ型 `KoeiroParam` と、その値を持つ定数が定義されています。`KoeiroParam` には、スピーカーの位置を表す `speakerX` と `speakerY` の2つのプロパティがあります。
@@ -838,7 +838,7 @@
 - `PRESET_D`: `KoeiroParam` のプリセットD
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/vrmViewer/viewerContext.ts
+## src/features/vrmViewer/viewerContext.ts
 
 ### File Description
 このファイルは、Reactのコンテクストを作成し、Viewerオブジェクトをそのコンテクストに提供しています。Viewerオブジェクトは別のファイルからインポートされています。
@@ -851,7 +851,7 @@
 このファイルには関数は定義されていません。ただし、新しいViewerオブジェクトのインスタンスが作成され、createContextを使ってViewerContextという名前のコンテクストが作成されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/vrmViewer/model.ts
+## src/features/vrmViewer/model.ts
 
 ### File Description
 このファイルは、Three.jsライブラリを使用してVRMモデルの読み込み、アニメーション、リップシンク、表情制御などの機能を提供するクラスを定義しています。VRMモデルを管理し、アニメーションの再生、音声に同期したリップシンク、表情の制御などの機能を提供します。
@@ -875,7 +875,7 @@
 - `update(delta: number): void`: リップシンク、表情制御、アニメーションの更新を行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/vrmViewer/viewer.ts
+## src/features/vrmViewer/viewer.ts
 
 ### File Description
 このファイルは、Three.jsライブラリを使用して3Dビューアーを作成するためのクラス `Viewer` を定義しています。このクラスは、VRMモデルをロードし、アニメーションを再生し、カメラの操作やレンダリングを行うためのメソッドを提供しています。
@@ -897,7 +897,7 @@
 - `update()`: アニメーションを更新し、レンダリングを行うためのメソッドです。requestAnimationFrameを使って再帰的に呼び出されます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/youtube/conversationContinuityFunctions.ts
+## src/features/youtube/conversationContinuityFunctions.ts
 
 提供されたファイルの内容に基づいて、要求されたMarkdown形式の説明を作成しました。
 
@@ -921,7 +921,7 @@
 - `getMessagesForContinuation`: アシスタントが会話を継続するための応答を生成するためのメッセージを取得する。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/youtube/youtubeComments.ts
+## src/features/youtube/youtubeComments.ts
 
 ### File Description
 このファイルは、YouTubeのライブチャットからコメントを取得し、それらのコメントを処理するための機能を提供しています。また、会話の継続性を維持するための様々な戦略が組み込まれています。
@@ -942,7 +942,7 @@
 - `fetchAndProcessComments`: YouTube のライブチャットからコメントを取得し、会話の継続性を維持するための様々な処理を行います。具体的には、最適なコメントを選択したり、新しいトピックを生成したり、スリープモードに入ったりするなどの機能があります。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/googletts/googletts.ts
+## src/features/googletts/googletts.ts
 
 ### File Description
 このファイルは、指定された文字列とテキスト音声変換(Text-to-Speech: TTS)の種類を受け取り、Google Cloud Text-to-Speechサービスを使ってオーディオコンテンツを合成する関数を提供しています。
@@ -954,7 +954,7 @@
 - `googleTts(message, ttsType)`: 与えられた`message`文字列と`ttsType`を使って、Google Cloud Text-to-Speechサービスを介してオーディオコンテンツを合成します。音声言語はen-US、性別はFEMALEに設定されています。この関数は、合成されたオーディオコンテンツをPromiseで返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/features/koeiromap/koeiromap.ts
+## src/features/koeiromap/koeiromap.ts
 
 ### File Description
 このファイルは、音声合成APIである「Koeiromap」を利用するための関数を提供しています。2つの異なるバージョンのAPIを扱っており、それぞれ異なる関数が定義されています。
@@ -967,7 +967,7 @@
 - `koeiromapFreeV1(message, speakerX, speakerY, style, apiKey)`: 指定された文字列、話者の座標、スタイル、APIキーを使って音声合成を行い、合成された音声データを返します。このバージョンはフリープランのAPIを利用しています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/utils/reduceTalkStyle.ts
+## src/utils/reduceTalkStyle.ts
 
 ### File Description
 このファイルは、音声合成サービス「koeiromap Free v1」の制限に対応するために、音声の話し方（声色）のパラメーターを制限する機能を提供しています。
@@ -980,7 +980,7 @@
   - 与えられた `talkStyle` 文字列が `"talk"`, `"happy"`, または `"sad"` の場合は、それを `ReducedTalkStyle` 型として返します。それ以外の場合は `"talk"` を返します。これにより、koeiromap Free v1 の制限に対応した音声の話し方を選択できます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/utils/wait.ts
+## src/utils/wait.ts
 
 ### File Description
 このファイルには、非同期の待機時間を作成する関数が1つ定義されています。指定されたミリ秒数だけ待機するPromiseを返します。
@@ -992,7 +992,7 @@
 - `wait(ms: number)`: 指定されたミリ秒数(`ms`)だけ待機する新しいPromiseを返す非同期関数。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/utils/buildUrl.ts
+## src/utils/buildUrl.ts
 
 ### File Description
 このファイルは、GitHubページにアプリケーションをデプロイする際に、アセットのURLを適切に構築するための関数を提供しています。
@@ -1005,7 +1005,7 @@
   - この関数は、与えられたパス文字列に、アプリケーションのルートURLを付加したURLを返します。これにより、GitHubページにデプロイされたアプリケーションでアセットが正しく読み込まれるようになります。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/styles/globals.css
+## src/styles/globals.css
 
 ### File Description
 このファイルは、Tailwind CSSのユーティリティクラスをインポートし、カスタムスタイルを定義しています。背景画像の配置、スライダーのスタイル、スクロールバーの非表示などの機能が含まれています。
@@ -1017,7 +1017,7 @@
 なし
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/settings.tsx
+## src/components/settings.tsx
 
 ### File Description
 このファイルは、チャットアプリケーションの設定画面用のReactコンポーネントを定義しています。様々な設定項目を扱っており、ユーザーはAIサービス、音声エンジン、キャラクターモデル、バックグラウンド画像などを選択できます。
@@ -1041,7 +1041,7 @@
 - その他の関数は、プロップスとして渡されたイベントハンドラーです。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/chatLog.tsx
+## src/components/chatLog.tsx
 
 ### File Description
 このファイルは、ReactコンポーネントのためのChatLogとChatコンポーネントを定義しています。ChatLogコンポーネントは、メッセージの配列とキャラクター名を受け取り、それらをChatコンポーネントを使って表示します。ChatLogコンポーネントは、新しいメッセージが追加されるたびにスクロール位置を調整します。
@@ -1055,7 +1055,7 @@
 - `Chat`: 個々のメッセージを表示するReactコンポーネントです。メッセージの役割(ユーザーまたはキャラクター)に応じて、異なるスタイルを適用します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/messageInput.tsx
+## src/components/messageInput.tsx
 
 ### File Description
 このファイルは、チャットアプリケーションのユーザーインターフェイスにおける入力フィールドとボタンのコンポーネントを定義しています。ユーザーがテキストを入力したり、送信ボタンやマイクボタンを操作できるようになっています。
@@ -1070,7 +1070,7 @@
 - `handleKeyPress`: テキストエリアでEnterキーが押された時の動作を処理する関数です。Shiftキーの有無によって改行orメッセージ送信を行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/link.tsx
+## src/components/link.tsx
 
 ### File Description
 このファイルは、URLとラベルを受け取り、新しいウィンドウでそのURLを開くリンクを生成するReactコンポーネントを定義しています。リンクにはスタイルが適用されています。
@@ -1082,7 +1082,7 @@
 - `Link`: URLとラベルを受け取り、新しいウィンドウで指定のURLを開くリンクを生成するReactコンポーネント。リンクにはスタイルが適用されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/speakers.json
+## src/components/speakers.json
 
 ### File Description
 このファイルは、様々な話者とそれぞれの話し方のIDをリストアップしたJSONデータです。話者の名前と話し方の種類が含まれています。
@@ -1094,7 +1094,7 @@
 なし(関数が定義されていないデータファイル)
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/meta.tsx
+## src/components/meta.tsx
 
 ### File Description
 このファイルは、Webアプリケーションのメタデータ（タイトル、説明、OGイメージなど）を設定するための React コンポーネントを定義しています。メタデータは主に検索エンジンの最適化やソーシャルメディアでのリンク共有に役立ちます。
@@ -1107,7 +1107,7 @@
 - `Meta`: メタデータを含む `Head` コンポーネントを返す React 関数コンポーネント。タイトル、説明、OGイメージ、Twitter カードなどのメタデータを設定しています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/textButton.tsx
+## src/components/textButton.tsx
 
 ### File Description
 このファイルは、Reactコンポーネントとしてカスタムボタンを定義しています。ボタンのスタイルとプロパティを設定できます。
@@ -1122,7 +1122,7 @@
   - `props.children`でボタンのテキストコンテンツをレンダリングしています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/assistantText.tsx
+## src/components/assistantText.tsx
 
 ### File Description
 このファイルは、React コンポーネントを定義しており、与えられたメッセージと文字名を表示するための AssistantText コンポーネントが含まれています。メッセージ内の特定の文字列パターンが削除されます。
@@ -1134,7 +1134,7 @@
 - `AssistantText`: メッセージ、文字名、および文字名を表示するかどうかを指定するプロパティを受け取り、それらを適切なスタイルで表示する React コンポーネントを返します。メッセージ内の特定のパターン (`[名前]`) が削除されます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/codeLog.tsx
+## src/components/codeLog.tsx
 
 ### File Description
 このファイルは、Reactコンポーネントを定義しています。`CodeLog`コンポーネントは、メッセージの配列を受け取り、それらをレンダリングします。`Chat`コンポーネントは、個々のメッセージをレンダリングする補助関数です。
@@ -1149,7 +1149,7 @@
 - `Chat`: 個々のメッセージをレンダリングする補助関数。メッセージのロール(役割)に応じて、背景色やテキストの色を変更します。また、改行文字に基づいてメッセージを分割してレンダリングします。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/menu.tsx
+## src/components/menu.tsx
 
 ### File Description
 このファイルは、チャットUIコンポーネントを提供しています。様々な設定項目を管理し、チャットログ、システムプロンプト、各種キーを制御できます。また、キャラクターの音声出力やVRM表示も行えます。
@@ -1183,7 +1183,7 @@
 - その他、様々な設定項目を変更するコールバック関数が定義されています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/messageInputContainer.tsx
+## src/components/messageInputContainer.tsx
 
 ### File Description
 このファイルは、テキスト入力と音声入力の両方を提供するReactコンポーネントです。音声認識が完了すると自動で送信され、返答文の生成中は入力を無効化します。
@@ -1202,7 +1202,7 @@
 このファイルでは、Webブラウザの音声認識APIを使用して音声入力を実装しています。また、返答文の生成中はテキスト入力とマイク入力の両方を無効化し、生成が完了したらユーザーメッセージをクリアしています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/iconButton.tsx
+## src/components/iconButton.tsx
 
 ### File Description
 このファイルは、Reactコンポーネント `IconButton` を定義しています。`IconButton` は、アイコンとラベルを持つボタンを表示するためのコンポーネントです。ボタンの外観は、CSSクラスで指定されています。
@@ -1215,7 +1215,7 @@
 - `IconButton`: このコンポーネントは、`iconName`、`isProcessing`、`label` などのプロパティを受け取り、ボタンを描画します。`isProcessing` が真の場合は、ローディングアイコンが表示されます。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/githubLink.tsx
+## src/components/githubLink.tsx
 
 ### File Description
 このファイルは、GitHubリポジトリへのリンクを表示するReactコンポーネントを提供しています。リンクは、画面の右上隅に常に表示され、ユーザーがリポジトリにアクセスできるようになっています。
@@ -1228,7 +1228,7 @@
 - `GitHubLink`: GitHubリポジトリへのリンクを表示するReactコンポーネントです。リンク自体は`<a>`タグで構成され、ホバー時とアクティブ時の背景色が変更されます。リンク内には、GitHubのロゴアイコンと"Fork me"というテキストが含まれています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/introduction.tsx
+## src/components/introduction.tsx
 
 ### File Description
 このファイルは、Reactコンポーネントの`Introduction`を定義しています。このコンポーネントは、アプリケーションの紹介画面を表示し、言語の選択やインストラクションの表示/非表示を制御します。
@@ -1247,7 +1247,7 @@
 - `getVoiceLanguageCode`: 選択された言語コードに対応するボイス言語コードを取得する関数。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/components/vrmViewer.tsx
+## src/components/vrmViewer.tsx
 
 ### File Description
 このファイルは、VRMモデルを表示するReactコンポーネントを定義しています。コンポーネント内では、canvasの初期化とVRMモデルの読み込みを行っています。また、ドラッグ&ドロップ機能を実装し、新しいVRMファイルを読み込むことができます。
@@ -1262,7 +1262,7 @@
 - `canvasRef`: canvasの初期化とVRMモデルの読み込みを行うコールバック関数です。ドラッグ&ドロップイベントハンドラも設定しています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/i18n.js
+## src/lib/i18n.js
 
 ### File Description
 このファイルは、i18nextライブラリを使用して多言語対応のための設定を行っています。initReactI18nextプラグインを使用し、異なる言語のJSON翻訳ファイルをロードして、アプリケーション全体で利用できるようにしています。
@@ -1280,7 +1280,7 @@
 最後に、設定済みのi18nインスタンスをエクスポートしています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/VRMAnimation.ts
+## src/lib/VRMAnimation/VRMAnimation.ts
 
 ### File Description
 このファイルは、VRMアニメーションを作成するためのクラスとメソッドを提供しています。VRMアニメーションデータから、Three.jsの AnimationClip オブジェクトを生成することができます。
@@ -1297,7 +1297,7 @@
 - `createLookAtTrack(trackName: string)`: 視線のアニメーショントラックを作成します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/VRMAnimationLoaderPluginOptions.ts
+## src/lib/VRMAnimation/VRMAnimationLoaderPluginOptions.ts
 
 申し訳ありませんが、ファイルの内容が単なるインターフェイス定義しか含まれていないため、Functions セクションを記述することはできません。しかし、他の情報は次のように書くことができます。
 
@@ -1311,7 +1311,7 @@
 このファイルには関数が定義されていません。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/VRMAnimationLoaderPlugin.ts
+## src/lib/VRMAnimation/VRMAnimationLoaderPlugin.ts
 
 ### File Description
 This file appears to be a plugin for the three.js library, specifically designed to load and handle VRM (Virtual Reality Model) animations. It allows parsing and processing animation data from GLTF/VRM files, extracting information about bone transformations, expressions, and look-at animations.
@@ -1340,7 +1340,7 @@ This file appears to be a plugin for the three.js library, specifically designed
 Overall, this file provides functionality to load and process VRM animation data from GLTF files, allowing integration with the three.js library.
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/loadVRMAnimation.ts
+## src/lib/VRMAnimation/loadVRMAnimation.ts
 
 ### File Description
 このファイルは、Three.jsライブラリを使用してVRMアニメーションをロードするための機能を提供しています。GLTFローダーにVRMAnimationLoaderPluginを登録し、指定されたURLからVRMアニメーションデータを非同期的にロードする関数が定義されています。
@@ -1354,7 +1354,7 @@ Overall, this file provides functionality to load and process VRM animation data
 - `loadVRMAnimation(url: string)`: 指定されたURLからVRMアニメーションデータをロードし、VRMAnimationオブジェクトを返すPromiseを返します。ロード中にエラーが発生した場合はnullを返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/VRMCVRMAnimation.ts
+## src/lib/VRMAnimation/VRMCVRMAnimation.ts
 
 ### File Description
 このファイルは、VRMCVRMAnimationインターフェイスを定義しています。VRMCVRMAnimationインターフェイスは、VRMモデルのアニメーション情報を表すデータ構造です。
@@ -1372,7 +1372,7 @@ Overall, this file provides functionality to load and process VRM animation data
 - `lookAt`: 視線の向きを表すノード番号
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/utils/linearstep.ts
+## src/lib/VRMAnimation/utils/linearstep.ts
 
 ### File Description
 このファイルは、2つの数値の範囲内で指定された値に対応する値を計算する関数`linearstep`をエクスポートしています。計算結果は`saturate`関数を使って0から1の範囲に制限されます。
@@ -1384,7 +1384,7 @@ Overall, this file provides functionality to load and process VRM animation data
 - `linearstep(a: number, b: number, t: number)`: 与えられた `a` と `b` の範囲内で `t` に対応する値を計算し、0から1の範囲に制限した値を返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/utils/saturate.ts
+## src/lib/VRMAnimation/utils/saturate.ts
 
 ### File Description
 このファイルは、数値を0と1の間に制限する関数 `saturate` を定義しています。この関数は、指定された数値が0未満の場合は0、1を超える場合は1を返し、それ以外の場合は入力値をそのまま返します。
@@ -1396,7 +1396,7 @@ Overall, this file provides functionality to load and process VRM animation data
 - `saturate(x: number)`: 与えられた数値 `x` を0と1の間に制限した値を返します。`x` が0未満の場合は0、1を超える場合は1、それ以外の場合は `x` をそのまま返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMAnimation/utils/arrayChunk.ts
+## src/lib/VRMAnimation/utils/arrayChunk.ts
 
 ### File Description
 このファイルは、配列を指定された長さのチャンクに分割する関数`arrayChunk`を提供しています。この関数は、入力配列と個々のチャンクのサイズを受け取り、分割された配列のチャンクを含む新しい配列を返します。
@@ -1409,7 +1409,7 @@ Overall, this file provides functionality to load and process VRM animation data
   - 与えられた配列`array`を`every`で指定された長さのチャンクに分割します。返り値は、分割された配列のチャンクを含む新しい配列です。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmoother.ts
+## src/lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmoother.ts
 
 ### File Description
 このファイルは、Three.jsとVRMHumanoidを使用した3Dキャラクターの視線制御を行うための機能を提供しています。VRMLookAtクラスを拡張し、ユーザーの方向を追跡しながらスムーズに視線を移動させる機能や、眼球のサッケード運動を追加する機能が実装されています。
@@ -1424,7 +1424,7 @@ Overall, this file provides functionality to load and process VRM animation data
   - `revertFirstPersonBoneQuat()`: レンダリング後に呼び出され、キャラクターの頭の回転をリセットする。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin.ts
+## src/lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin.ts
 
 ### File Description
 このファイルは、VRMのLookAtアニメーションをスムーズにするためのカスタムローダープラグインを提供しています。VRMLookAtSmootherLoaderPluginクラスは、VRMLookAtLoaderPluginクラスを継承し、VRMLookAtSmootherクラスを使用してLookAtアニメーションを滑らかにします。
@@ -1440,7 +1440,7 @@ Overall, this file provides functionality to load and process VRM animation data
   - `afterRoot` メソッドは、GLTFロード後に実行されます。VRMHumanoidとVRMLookAtオブジェクトを取得し、VRMLookAtSmootherインスタンスを作成して、GLTFのユーザーデータに格納します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/index.tsx
+## src/pages/index.tsx
 
 ### File Description
 このファイルはReact.jsで書かれたWebアプリケーション用の主要なコンポーネントです。VRMモデルのビューアと、音声対話システムを統合しています。ユーザーはシステムプロンプトや言語、音声合成エンジンなどの設定を変更できます。
@@ -1466,7 +1466,7 @@ Overall, this file provides functionality to load and process VRM animation data
 - `fetchAndProcessCommentsCallback`: YouTubeライブチャットのコメントを取得し、AIに送信する。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/_document.tsx
+## src/pages/_document.tsx
 
 ### File Description
 このファイルは、Next.jsアプリケーションのドキュメントコンポーネントを定義しています。このコンポーネントは、HTMLのレンダリングに使用され、GoogleFontsからフォントをインポートしています。
@@ -1482,7 +1482,7 @@ Overall, this file provides functionality to load and process VRM animation data
   - 本文要素には、アプリケーションの主要なコンテンツを含む`Main`コンポーネントと、Next.jsの機能に必要な`NextScript`コンポーネントが含まれています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/_app.tsx
+## src/pages/_app.tsx
 
 ### File Description
 Nextjs アプリケーションのエントリーポイントとして機能するファイルです。言語設定を自動的に行い、アプリケーションのコンポーネントをレンダリングします。
@@ -1501,7 +1501,7 @@ Nextjs アプリケーションのエントリーポイントとして機能す�
   - `Component` プロップスで受け取ったメインコンポーネントをレンダリングします。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/api/anthropic.ts
+## src/pages/api/anthropic.ts
 
 ### File Description
 このファイルは、Next.js APIルートで、Anthropic AIモデルとやり取りするためのエンドポイントを提供しています。クライアントからメッセージとAPIキーを受け取り、Anthropic SDKを使ってAIモデルを呼び出し、レスポンスを返します。レスポンスはストリーミングまたは一括で送信できます。
@@ -1519,7 +1519,7 @@ Nextjs アプリケーションのエントリーポイントとして機能す�
   - 通常モードの場合は、レスポンス全体をJSONで返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/api/chat.ts
+## src/pages/api/chat.ts
 
 ### File Description
 この Node.js API ハンドラは、OpenAI の ChatGPT API とやり取りするために使用されます。API キーを受け取り、入力されたメッセージを ChatGPT に送信し、応答を返します。
@@ -1532,7 +1532,7 @@ Nextjs アプリケーションのエントリーポイントとして機能す�
 - `handler`: API エンドポイントの main 関数。OpenAI API キーの検証、API リクエストの送信、応答の返却を行います。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/api/groq.ts
+## src/pages/api/groq.ts
 
 ### File Description
 このファイルは、Next.js APIルートとしてGroqへの問い合わせを処理するためのコードです。ユーザーからのメッセージを受け取り、Groqのモデルに送信し、応答を生成して返します。ストリーミングモードとノンストリーミングモードの両方をサポートしています。
@@ -1546,7 +1546,7 @@ Nextjs アプリケーションのエントリーポイントとして機能す�
 - `handler(req: NextApiRequest, res: NextApiResponse)`: メインの関数です。ユーザーからのリクエストを処理し、Groqへの問い合わせを行い、応答を返します。ストリーミングモードとノンストリーミングモードの両方に対応しています。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/api/tts.ts
+## src/pages/api/tts.ts
 
 確かにこのファイルについて説明しましょう。
 
@@ -1561,7 +1561,7 @@ Nextjs アプリケーションのエントリーポイントとして機能す�
 - `handler` 関数はNext.jsのAPIルートハンドラーです。リクエストボディから必要なパラメータを取得し、TTSタイプに基づいて適切な音声合成関数を呼び出します。生成された音声データをJSONレスポンスとして返します。
 
 
-## /Users/user/WorkSpace/nike-ChatVRM/src/pages/api/stylebertvits2.ts
+## src/pages/api/stylebertvits2.ts
 
 ### File Description
 このファイルは、Next.js APIルートハンドラーを定義しています。クライアントからのリクエストに応じて、指定されたテキストと音声スタイルパラメータを使ってStylebertVits2サーバーからオーディオデータを取得し、そのデータをレスポンスとして返します。

@@ -147,7 +147,11 @@ def get_functions(file_path: str) -> List[str]:
 
 
 def get_file_description(
-    client: anthropic.Client, file_path: str, functions: List[str], prompt_template: str
+    client: anthropic.Client,
+    file_path: str,
+    folder_path: str,
+    functions: List[str],
+    prompt_template: str,
 ) -> str:
     """
     指定されたファイルの内容を分析し、説明を生成する。
@@ -155,6 +159,7 @@ def get_file_description(
     Args:
         client (anthropic.Client): Anthropic APIクライアント
         file_path (str): 分析するファイルのパス
+        folder_path (str): プロジェクトのベースパス
         functions (List[str]): ファイル内の関数名のリスト
         prompt_template (str): 説明生成に使用するプロンプトのテンプレート
 
@@ -174,8 +179,11 @@ def get_file_description(
 
     description = response.content[0].text
 
+    # 絶対パスを相対パスに変換
+    relative_path = os.path.relpath(file_path, folder_path)
+
     markdown_description = f"""
-## {file_path}
+## {relative_path}
 
 {description.strip()}
 """
@@ -220,30 +228,33 @@ def main(
         ]
         for file in files:
             file_path = os.path.join(root, file)
+            relative_path = os.path.relpath(file_path, folder_path)
             file_extension = os.path.splitext(file)[1][1:].lower()
 
             if is_ignored(file_path, gitignore_spec, folder_path):
-                ignored_files.append(file_path)
+                ignored_files.append(relative_path)
                 continue
 
             if file_extension in excluded_extensions:
-                excluded_files.append(file_path)
+                excluded_files.append(relative_path)
                 continue
 
             if not is_text_file(file_path):
-                non_text_files.append(file_path)
+                non_text_files.append(relative_path)
                 continue
 
             try:
                 with open(file_path, "r", encoding="utf-8") as test_file:
                     content = test_file.read()
                     if not content.strip():
-                        empty_files.append(file_path)
+                        empty_files.append(relative_path)
                         continue
 
-                target_files.append(file_path)
+                target_files.append(file_path)  # 絶対パスで保存
             except Exception as e:
-                print(f"ファイル {file_path} の処理中にエラーが発生しました: {str(e)}", file=sys.stderr)
+                print(
+                    f"ファイル {relative_path} の処理中にエラーが発生しました: {str(e)}", file=sys.stderr
+                )
 
     print(f"\n処理対象となるファイル数: {len(target_files)}", file=sys.stderr)
     print(f"除外されたファイル数:")
@@ -255,7 +266,7 @@ def main(
     if dry_run:
         print("\n対象ファイルのリスト:")
         for file in target_files:
-            print(file)
+            print(os.path.relpath(file, folder_path))
 
         print("\n除外されたファイルの詳細:")
         print("\n.gitignoreにより無視されたファイル:")
@@ -276,19 +287,21 @@ def main(
             file_tree = get_file_tree(folder_path, gitignore_spec)
             f.write("# Project Structure\n\n")
             f.write(file_tree)
-            f.write("\n\n# File Descriptions\n")
+            f.write("\n\n# File Descriptions\n\n")
 
             print("ファイルの説明を生成中...", file=sys.stderr)
             for file_path in target_files:
                 try:
+                    relative_path = os.path.relpath(file_path, folder_path)
                     functions = get_functions(file_path)
                     description = get_file_description(
-                        client, file_path, functions, prompt_template
+                        client, file_path, folder_path, functions, prompt_template
                     )
-                    print(f"  処理完了: {file_path}", file=sys.stderr)
+                    print(f"  処理完了: {relative_path}", file=sys.stderr)
                     f.write(f"{description}\n")
                 except Exception as e:
-                    print(f"  エラー発生: {file_path} - {str(e)}", file=sys.stderr)
+                    relative_path = os.path.relpath(file_path, folder_path)
+                    print(f"  エラー発生: {relative_path} - {str(e)}", file=sys.stderr)
 
         print(f"\n処理が完了しました。結果は {output_file} に保存されています。", file=sys.stderr)
 
