@@ -1,20 +1,26 @@
 import os
 import sys
 import ast
+import time
 import argparse
 import anthropic
 import pathspec
 import chardet
 from typing import List, Set
+from datetime import datetime
 
 
 def read_gitignore(folder_path: str) -> pathspec.PathSpec:
     """
-    指定されたフォルダ内の.gitignoreファイルを読み込み、PathSpecオブジェクトを返します。
-    .gitディレクトリとnode_modulesを常に除外するパターンも追加します。
+    指定されたフォルダ内の.gitignoreファイルを読み込み、PathSpecオブジェクトを返す。
 
-    :param folder_path: .gitignoreファイルを探すフォルダのパス
-    :return: PathSpecオブジェクト
+    .gitディレクトリとnode_modulesを常に除外するパターンも追加する。
+
+    Args:
+        folder_path (str): .gitignoreファイルを探すフォルダのパス
+
+    Returns:
+        pathspec.PathSpec: 生成されたPathSpecオブジェクト
     """
     gitignore_path = os.path.join(folder_path, ".gitignore")
     patterns = [".git/", "node_modules/"]  # .gitディレクトリとnode_modulesを常に除外
@@ -26,12 +32,15 @@ def read_gitignore(folder_path: str) -> pathspec.PathSpec:
 
 def is_ignored(path: str, gitignore_spec: pathspec.PathSpec, base_path: str) -> bool:
     """
-    指定されたパスが無視すべきかどうかを判断します。
+    指定されたパスが無視すべきかどうかを判断する。
 
-    :param path: チェックするパス
-    :param gitignore_spec: PathSpecオブジェクト
-    :param base_path: プロジェクトのベースパス
-    :return: パスが無視すべき場合はTrue、そうでない場合はFalse
+    Args:
+        path (str): チェックするパス
+        gitignore_spec (pathspec.PathSpec): PathSpecオブジェクト
+        base_path (str): プロジェクトのベースパス
+
+    Returns:
+        bool: パスが無視すべき場合はTrue、そうでない場合はFalse
     """
     rel_path = os.path.relpath(path, base_path)
     return gitignore_spec.match_file(rel_path)
@@ -39,12 +48,16 @@ def is_ignored(path: str, gitignore_spec: pathspec.PathSpec, base_path: str) -> 
 
 def get_file_tree(folder_path: str, gitignore_spec: pathspec.PathSpec) -> str:
     """
-    指定されたフォルダのファイル構造をツリー形式で返します。
-    .gitディレクトリとnode_modulesは除外されます。
+    指定されたフォルダのファイル構造をMarkdownのツリー形式で返す。
 
-    :param folder_path: ツリーを生成するフォルダのパス
-    :param gitignore_spec: PathSpecオブジェクト
-    :return: ツリー形式のファイル構造を表す文字列
+    .gitディレクトリとnode_modulesは除外される。
+
+    Args:
+        folder_path (str): ツリーを生成するフォルダのパス
+        gitignore_spec (pathspec.PathSpec): PathSpecオブジェクト
+
+    Returns:
+        str: Markdown形式のファイル構造を表す文字列
     """
     tree = []
     for root, dirs, files in os.walk(folder_path, topdown=True):
@@ -55,20 +68,23 @@ def get_file_tree(folder_path: str, gitignore_spec: pathspec.PathSpec) -> str:
         ]
         level = root.replace(folder_path, "").count(os.sep)
         indent = "  " * level
-        tree.append(f"{indent}{os.path.basename(root)}/")
+        tree.append(f"{indent}- {os.path.basename(root)}/")
         for file in files:
             if not is_ignored(os.path.join(root, file), gitignore_spec, folder_path):
-                tree.append(f"{indent}  {file}")
+                tree.append(f"{indent}  - {file}")
     return "\n".join(tree)
 
 
 def is_text_file(file_path: str, sample_size: int = 1024) -> bool:
     """
-    ファイルがテキストファイルかどうかを判断します。
+    ファイルがテキストファイルかどうかを判断する。
 
-    :param file_path: チェックするファイルのパス
-    :param sample_size: 読み込むサンプルサイズ（バイト）
-    :return: テキストファイルの場合はTrue、そうでない場合はFalse
+    Args:
+        file_path (str): チェックするファイルのパス
+        sample_size (int, optional): 読み込むサンプルサイズ（バイト）。デフォルトは1024。
+
+    Returns:
+        bool: テキストファイルの場合はTrue、そうでない場合はFalse
     """
     try:
         with open(file_path, "rb") as f:
@@ -95,20 +111,26 @@ def is_text_file(file_path: str, sample_size: int = 1024) -> bool:
 
 def is_binary_file(file_path: str) -> bool:
     """
-    ファイルがバイナリファイルかどうかを判断します。
+    ファイルがバイナリファイルかどうかを判断する。
 
-    :param file_path: チェックするファイルのパス
-    :return: バイナリファイルの場合はTrue、そうでない場合はFalse
+    Args:
+        file_path (str): チェックするファイルのパス
+
+    Returns:
+        bool: バイナリファイルの場合はTrue、そうでない場合はFalse
     """
     return not is_text_file(file_path)
 
 
 def get_functions(file_path: str) -> List[str]:
     """
-    指定されたPythonファイル内の関数名のリストを返します。
+    指定されたPythonファイル内の関数名のリストを返す。
 
-    :param file_path: 分析するPythonファイルのパス
-    :return: ファイル内の関数名のリスト
+    Args:
+        file_path (str): 分析するPythonファイルのパス
+
+    Returns:
+        List[str]: ファイル内の関数名のリスト
     """
     with open(file_path, "r") as f:
         content = f.read()
@@ -127,15 +149,17 @@ def get_functions(file_path: str) -> List[str]:
 def get_file_description(
     client: anthropic.Client, file_path: str, functions: List[str], prompt_template: str
 ) -> str:
-    # return "test"
     """
-    指定されたファイルの内容を分析し、AIを使用して説明を生成します。
+    指定されたファイルの内容を分析し、説明を生成する。
 
-    :param client: Anthropic APIクライアント
-    :param file_path: 分析するファイルのパス
-    :param functions: ファイル内の関数名のリスト
-    :param prompt_template: 説明生成に使用するプロンプトのテンプレート
-    :return: 生成された説明文
+    Args:
+        client (anthropic.Client): Anthropic APIクライアント
+        file_path (str): 分析するファイルのパス
+        functions (List[str]): ファイル内の関数名のリスト
+        prompt_template (str): 説明生成に使用するプロンプトのテンプレート
+
+    Returns:
+        str: 生成されたMarkdown形式の説明
     """
     with open(file_path, "r") as f:
         content = f.read()
@@ -147,7 +171,15 @@ def get_file_description(
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text
+
+    description = response.content[0].text
+
+    markdown_description = f"""
+## {file_path}
+
+{description.strip()}
+"""
+    return markdown_description
 
 
 def main(
@@ -157,6 +189,18 @@ def main(
     prompt_template: str,
     dry_run: bool,
 ):
+    """
+    メイン関数。指定されたフォルダ内のファイルを分析し、説明を生成する。
+
+    Args:
+        folder_path (str): 分析するフォルダのパス
+        output_file (str): 出力ファイルの名前
+        excluded_extensions (List[str]): 除外する拡張子のリスト
+        prompt_template (str): 説明生成に使用するプロンプトのテンプレート
+        dry_run (bool): LLM処理を実行せずに対象ファイルのリストを出力するかどうか
+    """
+    start_time = time.time()
+
     gitignore_spec = read_gitignore(folder_path)
     if not dry_run:
         client = anthropic.Client(api_key=os.environ.get("ANTHROPIC_API_KEY"))
@@ -230,8 +274,9 @@ def main(
         with open(output_file, "w", encoding="utf-8") as f:
             print("ファイル構造を生成中...", file=sys.stderr)
             file_tree = get_file_tree(folder_path, gitignore_spec)
+            f.write("# Project Structure\n\n")
             f.write(file_tree)
-            f.write("\n\n")
+            f.write("\n\n# File Descriptions\n")
 
             print("ファイルの説明を生成中...", file=sys.stderr)
             for file_path in target_files:
@@ -241,42 +286,51 @@ def main(
                         client, file_path, functions, prompt_template
                     )
                     print(f"  処理完了: {file_path}", file=sys.stderr)
-                    f.write(f"\n{file_path}:\n{description}\n")
+                    f.write(f"{description}\n")
                 except Exception as e:
                     print(f"  エラー発生: {file_path} - {str(e)}", file=sys.stderr)
 
         print(f"\n処理が完了しました。結果は {output_file} に保存されています。", file=sys.stderr)
 
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    print(f"\n実行時間: {execution_time:.2f} 秒", file=sys.stderr)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="指定されたフォルダ内のファイルの説明を生成します。")
     parser.add_argument("folder_path", help="分析するフォルダのパス")
-    parser.add_argument("--output", default="output.txt", help="出力ファイルの名前")
+    parser.add_argument("--output", default="output.md", help="出力ファイルの名前")
     parser.add_argument("--exclude", nargs="*", default=[], help="除外する拡張子のリスト")
     parser.add_argument(
         "--prompt",
         default="""
-Human: ファイルの内容を分析し、以下の形式で説明を提供してください：
+Human: ファイルの内容を分析し、以下の形式でMarkdown形式の説明を提供してください：
 
-1. ファイルの全体的な説明
-2. PythonまたはTypeScriptファイルの場合、インポートされているモジュールのリスト
-3. 以下の各関数の簡潔な説明（1-2文）：
-{functions}
+### File Description
+ファイルの全体的な説明（2-3文で簡潔に）
+
+### Imported Modules
+インポートされているモジュールのリスト（箇条書き）
+
+### Functions
+定義されている関数の簡潔な説明（各関数について1-2文）
 
 ファイルの内容：
 
 {content}
 
-Assistant: ファイルの内容を分析し、要求された形式で説明を提供いたします。
+A: 以下に、要求されたMarkdown形式での説明を提供します：
 
-1. ファイルの全体的な説明:
+### File Description
 [ファイルの全体的な説明をここに記述]
 
-2. インポートされているモジュール:
-[インポートされているモジュールのリストをここに記述]
+### Imported Modules
+[インポートされているモジュールのリストを箇条書きで記述]
 
-3. 関数の説明:
-[各関数の簡潔な説明をここに記述]
+### Functions
+[各関数の簡潔な説明を箇条書きで記述]
 """,
         help="説明生成に使用するプロンプトのテンプレート",
     )
