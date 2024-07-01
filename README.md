@@ -75,17 +75,17 @@ AIを活用してプロジェクトのコードベースを分析し、ファイ
    - .projectignoreで除外されたファイルはツリー構造には表示されますが、AIによるファイル説明は実行されません
 2. ファイルの説明（# File Descriptions）
    - 各ファイルに対して：
-     - ファイルの説明（### File Description）
+     - ファイルの説明（## File Description）
      - インポートされているモジュール（### Imported Modules）
      - 定義されている関数（### Functions）
 
 ## 参考
 
-[sample.md](sample.md) は [tegnike/aituber-kit(v1.24.0)](https://github.com/tegnike/aituber-kit) の実行結果です。
+[sample.md](samples/summary.md) は [tegnike/aituber-kit(v1.24.1)](https://github.com/tegnike/aituber-kit) の実行結果です。
 
 - 対象ファイル数: 95
-- 出力行数: 1,575
-- 実行時間: 494.41秒
+- 出力結果行数: 1,575
+- 実行時間: 357.38 秒
 - API費用: $0.69
 
 ## 注意事項
