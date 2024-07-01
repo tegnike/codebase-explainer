@@ -73,6 +73,42 @@ def is_ignored(
     )
 
 
+def is_ignored_by_gitignore(
+    path: str, gitignore_spec: pathspec.PathSpec, base_path: str
+) -> bool:
+    """
+    指定されたパスが.gitignoreによって無視すべきかどうかを判断する。
+
+    Args:
+        path (str): チェックするパス
+        gitignore_spec (pathspec.PathSpec): GitignoreのPathSpecオブジェクト
+        base_path (str): プロジェクトのベースパス
+
+    Returns:
+        bool: パスが無視すべき場合はTrue、そうでない場合はFalse
+    """
+    rel_path = os.path.relpath(path, base_path)
+    return gitignore_spec.match_file(rel_path)
+
+
+def is_ignored_by_projectignore(
+    path: str, projectignore_spec: pathspec.PathSpec, base_path: str
+) -> bool:
+    """
+    指定されたパスが.projectignoreによって無視すべきかどうかを判断する。
+
+    Args:
+        path (str): チェックするパス
+        projectignore_spec (pathspec.PathSpec): ProjectignoreのPathSpecオブジェクト
+        base_path (str): プロジェクトのベースパス
+
+    Returns:
+        bool: パスが無視すべき場合はTrue、そうでない場合はFalse
+    """
+    rel_path = os.path.relpath(path, base_path)
+    return projectignore_spec.match_file(rel_path)
+
+
 def get_file_tree(
     folder_path: str,
     gitignore_spec: pathspec.PathSpec,
@@ -80,6 +116,7 @@ def get_file_tree(
 ) -> str:
     """
     指定されたフォルダのファイル構造をMarkdownのツリー形式で返す。
+    .gitignoreで無視されたファイルは除外し、.projectignoreで無視されたファイルは含める。
 
     Args:
         folder_path (str): ツリーを生成するフォルダのパス
@@ -94,21 +131,22 @@ def get_file_tree(
         dirs[:] = [
             d
             for d in dirs
-            if not is_ignored(
-                os.path.join(root, d), gitignore_spec, projectignore_spec, folder_path
+            if not is_ignored_by_gitignore(
+                os.path.join(root, d), gitignore_spec, folder_path
             )
         ]
         level = root.replace(folder_path, "").count(os.sep)
         indent = "  " * level
         tree.append(f"{indent}- {os.path.basename(root)}/")
         for file in files:
-            if not is_ignored(
-                os.path.join(root, file),
-                gitignore_spec,
-                projectignore_spec,
-                folder_path,
-            ):
-                tree.append(f"{indent}  - {file}")
+            file_path = os.path.join(root, file)
+            if not is_ignored_by_gitignore(file_path, gitignore_spec, folder_path):
+                if is_ignored_by_projectignore(
+                    file_path, projectignore_spec, folder_path
+                ):
+                    tree.append(f"{indent}  - {file}")
+                else:
+                    tree.append(f"{indent}  - {file}")
     return "\n".join(tree)
 
 
@@ -273,7 +311,8 @@ def main(
         client = anthropic.Client(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
     target_files = []
-    ignored_files = []
+    ignored_by_gitignore = []
+    ignored_by_projectignore = []
     excluded_files = []
     non_text_files = []
     empty_files = []
@@ -283,8 +322,8 @@ def main(
         dirs[:] = [
             d
             for d in dirs
-            if not is_ignored(
-                os.path.join(root, d), gitignore_spec, projectignore_spec, folder_path
+            if not is_ignored_by_gitignore(
+                os.path.join(root, d), gitignore_spec, folder_path
             )
         ]
         for file in files:
@@ -292,8 +331,12 @@ def main(
             relative_path = os.path.relpath(file_path, folder_path)
             file_extension = os.path.splitext(file)[1][1:].lower()
 
-            if is_ignored(file_path, gitignore_spec, projectignore_spec, folder_path):
-                ignored_files.append(relative_path)
+            if is_ignored_by_gitignore(file_path, gitignore_spec, folder_path):
+                ignored_by_gitignore.append(relative_path)
+                continue
+
+            if is_ignored_by_projectignore(file_path, projectignore_spec, folder_path):
+                ignored_by_projectignore.append(relative_path)
                 continue
 
             if file_extension in excluded_extensions:
@@ -319,7 +362,8 @@ def main(
 
     print(f"\n処理対象となるファイル数: {len(target_files)}", file=sys.stderr)
     print(f"除外されたファイル数:")
-    print(f"  .gitignoreまたは.projectignoreにより無視: {len(ignored_files)}")
+    print(f"  .gitignoreにより無視: {len(ignored_by_gitignore)}")
+    print(f"  .projectignoreにより無視: {len(ignored_by_projectignore)}")
     print(f"  除外された拡張子: {len(excluded_files)}")
     print(f"  テキストファイルではない: {len(non_text_files)}")
     print(f"  空のファイル: {len(empty_files)}")
@@ -330,8 +374,8 @@ def main(
             print(os.path.relpath(file, folder_path))
 
         print("\n除外されたファイルの詳細:")
-        print("\n.gitignoreまたは.projectignoreにより無視されたファイル:")
-        for file in ignored_files:
+        print("\n.projectignoreにより無視されたファイル:")
+        for file in ignored_by_projectignore:
             print(f"  {file}")
         print("\n除外された拡張子のファイル:")
         for file in excluded_files:
