@@ -234,7 +234,7 @@ def get_file_description(
     prompt = prompt_template.format(functions=", ".join(functions), content=content)
 
     response = client.messages.create(
-        model="claude-3-sonnet-20240229",
+        model="claude-3-5-sonnet-20240620",
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}],
     )
