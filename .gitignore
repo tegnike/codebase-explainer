@@ -7,8 +7,8 @@
 !main.py
 !requirements.txt
 !sample.md
-!scripts/
-!scripts/**
+!samples/
+!samples/**
 
 # .gitignore自体も追跡対象に
 !.gitignore
