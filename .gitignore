@@ -1,0 +1,14 @@
+# デフォルトで全てを無視
+*
+
+# 追跡したいファイルとディレクトリを指定
+!LICENSE
+!README.md
+!main.py
+!requirements.txt
+!sample.md
+!scripts/
+!scripts/**
+
+# .gitignore自体も追跡対象に
+!.gitignore

@@ -30,31 +30,61 @@ def read_gitignore(folder_path: str) -> pathspec.PathSpec:
     return pathspec.PathSpec.from_lines("gitwildmatch", patterns)
 
 
-def is_ignored(path: str, gitignore_spec: pathspec.PathSpec, base_path: str) -> bool:
+def read_projectignore(output_dir: str) -> pathspec.PathSpec:
+    """
+    指定されたディレクトリ内の.projectignoreファイルを読み込み、PathSpecオブジェクトを返す。
+
+    Args:
+        output_dir (str): .projectignoreファイルを探すディレクトリのパス
+
+    Returns:
+        pathspec.PathSpec: 生成されたPathSpecオブジェクト
+    """
+    projectignore_path = os.path.join(output_dir, ".projectignore")
+    if not os.path.exists(projectignore_path):
+        raise FileNotFoundError(f".projectignoreファイルが見つかりません: {projectignore_path}")
+
+    with open(projectignore_path, "r") as f:
+        patterns = f.read().splitlines()
+    return pathspec.PathSpec.from_lines("gitwildmatch", patterns)
+
+
+def is_ignored(
+    path: str,
+    gitignore_spec: pathspec.PathSpec,
+    projectignore_spec: pathspec.PathSpec,
+    base_path: str,
+) -> bool:
     """
     指定されたパスが無視すべきかどうかを判断する。
 
     Args:
         path (str): チェックするパス
-        gitignore_spec (pathspec.PathSpec): PathSpecオブジェクト
+        gitignore_spec (pathspec.PathSpec): GitignoreのPathSpecオブジェクト
+        projectignore_spec (pathspec.PathSpec): ProjectignoreのPathSpecオブジェクト
         base_path (str): プロジェクトのベースパス
 
     Returns:
         bool: パスが無視すべき場合はTrue、そうでない場合はFalse
     """
     rel_path = os.path.relpath(path, base_path)
-    return gitignore_spec.match_file(rel_path)
+    return gitignore_spec.match_file(rel_path) or projectignore_spec.match_file(
+        rel_path
+    )
 
 
-def get_file_tree(folder_path: str, gitignore_spec: pathspec.PathSpec) -> str:
+def get_file_tree(
+    folder_path: str,
+    gitignore_spec: pathspec.PathSpec,
+    projectignore_spec: pathspec.PathSpec,
+) -> str:
     """
     指定されたフォルダのファイル構造をMarkdownのツリー形式で返す。
 
-    .gitディレクトリとnode_modulesは除外される。
-
     Args:
         folder_path (str): ツリーを生成するフォルダのパス
-        gitignore_spec (pathspec.PathSpec): PathSpecオブジェクト
+        gitignore_spec (pathspec.PathSpec): GitignoreのPathSpecオブジェクト
+        projectignore_spec (pathspec.PathSpec): ProjectignoreのPathSpecオブジェクト
 
     Returns:
         str: Markdown形式のファイル構造を表す文字列
@@ -64,13 +94,20 @@ def get_file_tree(folder_path: str, gitignore_spec: pathspec.PathSpec) -> str:
         dirs[:] = [
             d
             for d in dirs
-            if not is_ignored(os.path.join(root, d), gitignore_spec, folder_path)
+            if not is_ignored(
+                os.path.join(root, d), gitignore_spec, projectignore_spec, folder_path
+            )
         ]
         level = root.replace(folder_path, "").count(os.sep)
         indent = "  " * level
         tree.append(f"{indent}- {os.path.basename(root)}/")
         for file in files:
-            if not is_ignored(os.path.join(root, file), gitignore_spec, folder_path):
+            if not is_ignored(
+                os.path.join(root, file),
+                gitignore_spec,
+                projectignore_spec,
+                folder_path,
+            ):
                 tree.append(f"{indent}  - {file}")
     return "\n".join(tree)
 
@@ -107,19 +144,6 @@ def is_text_file(file_path: str, sample_size: int = 1024) -> bool:
         return True
     except (UnicodeDecodeError, IOError):
         return False
-
-
-def is_binary_file(file_path: str) -> bool:
-    """
-    ファイルがバイナリファイルかどうかを判断する。
-
-    Args:
-        file_path (str): チェックするファイルのパス
-
-    Returns:
-        bool: バイナリファイルの場合はTrue、そうでない場合はFalse
-    """
-    return not is_text_file(file_path)
 
 
 def get_functions(file_path: str) -> List[str]:
@@ -190,9 +214,24 @@ def get_file_description(
     return markdown_description
 
 
+def create_projectignore(output_dir: str) -> None:
+    """
+    指定されたディレクトリに.projectignoreファイルを作成する。
+
+    Args:
+        output_dir (str): .projectignoreファイルを作成するディレクトリのパス
+    """
+    projectignore_path = os.path.join(output_dir, ".projectignore")
+    if not os.path.exists(projectignore_path):
+        with open(projectignore_path, "w") as f:
+            f.write("# Add patterns to ignore here, one per line\n")
+        print(f".projectignoreファイルが作成されました: {projectignore_path}", file=sys.stderr)
+    else:
+        print(f".projectignoreファイルは既に存在します: {projectignore_path}", file=sys.stderr)
+
+
 def main(
     folder_path: str,
-    output_file: str,
     excluded_extensions: List[str],
     prompt_template: str,
     dry_run: bool,
@@ -202,15 +241,35 @@ def main(
 
     Args:
         folder_path (str): 分析するフォルダのパス
-        output_file (str): 出力ファイルの名前
         excluded_extensions (List[str]): 除外する拡張子のリスト
         prompt_template (str): 説明生成に使用するプロンプトのテンプレート
-        dry_run (bool): LLM処理を実行せずに対象ファイルのリストを出力するかどうか
+        dry_run (bool): .projectignoreファイルの作成と対象ファイルのリスト出力のみを行うかどうか
     """
     start_time = time.time()
 
+    # 出力ディレクトリの設定
+    output_dir = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), os.path.basename(folder_path)
+    )
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, "summary.md")
+
     gitignore_spec = read_gitignore(folder_path)
-    if not dry_run:
+
+    if dry_run:
+        create_projectignore(output_dir)
+        try:
+            projectignore_spec = read_projectignore(output_dir)
+        except FileNotFoundError:
+            projectignore_spec = pathspec.PathSpec.from_lines("gitwildmatch", [])
+    else:
+        try:
+            projectignore_spec = read_projectignore(output_dir)
+        except FileNotFoundError:
+            print("エラー: .projectignoreファイルが見つかりません。", file=sys.stderr)
+            print("最初にdry-runオプションを実行して.projectignoreファイルを作成してください。", file=sys.stderr)
+            return
+
         client = anthropic.Client(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
     target_files = []
@@ -224,14 +283,16 @@ def main(
         dirs[:] = [
             d
             for d in dirs
-            if not is_ignored(os.path.join(root, d), gitignore_spec, folder_path)
+            if not is_ignored(
+                os.path.join(root, d), gitignore_spec, projectignore_spec, folder_path
+            )
         ]
         for file in files:
             file_path = os.path.join(root, file)
             relative_path = os.path.relpath(file_path, folder_path)
             file_extension = os.path.splitext(file)[1][1:].lower()
 
-            if is_ignored(file_path, gitignore_spec, folder_path):
+            if is_ignored(file_path, gitignore_spec, projectignore_spec, folder_path):
                 ignored_files.append(relative_path)
                 continue
 
@@ -258,7 +319,7 @@ def main(
 
     print(f"\n処理対象となるファイル数: {len(target_files)}", file=sys.stderr)
     print(f"除外されたファイル数:")
-    print(f"  .gitignoreにより無視: {len(ignored_files)}")
+    print(f"  .gitignoreまたは.projectignoreにより無視: {len(ignored_files)}")
     print(f"  除外された拡張子: {len(excluded_files)}")
     print(f"  テキストファイルではない: {len(non_text_files)}")
     print(f"  空のファイル: {len(empty_files)}")
@@ -269,7 +330,7 @@ def main(
             print(os.path.relpath(file, folder_path))
 
         print("\n除外されたファイルの詳細:")
-        print("\n.gitignoreにより無視されたファイル:")
+        print("\n.gitignoreまたは.projectignoreにより無視されたファイル:")
         for file in ignored_files:
             print(f"  {file}")
         print("\n除外された拡張子のファイル:")
@@ -281,10 +342,12 @@ def main(
         print("\n空のファイル:")
         for file in empty_files:
             print(f"  {file}")
+
+        print("\ndry-runが完了しました。.projectignoreファイルを編集し、本実行を行ってください。", file=sys.stderr)
     else:
         with open(output_file, "w", encoding="utf-8") as f:
             print("ファイル構造を生成中...", file=sys.stderr)
-            file_tree = get_file_tree(folder_path, gitignore_spec)
+            file_tree = get_file_tree(folder_path, gitignore_spec, projectignore_spec)
             f.write("# Project Structure\n\n")
             f.write(file_tree)
             f.write("\n\n# File Descriptions\n\n")
@@ -314,7 +377,6 @@ def main(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="指定されたフォルダ内のファイルの説明を生成します。")
     parser.add_argument("folder_path", help="分析するフォルダのパス")
-    parser.add_argument("--output", default="output.md", help="出力ファイルの名前")
     parser.add_argument("--exclude", nargs="*", default=[], help="除外する拡張子のリスト")
     parser.add_argument(
         "--prompt",
@@ -348,12 +410,12 @@ A: 以下に、要求されたMarkdown形式での説明を提供します：
         help="説明生成に使用するプロンプトのテンプレート",
     )
     parser.add_argument(
-        "--dry-run", action="store_true", help="LLM処理を実行せずに対象ファイルのリストを出力"
+        "--dry-run", action="store_true", help=".projectignoreファイルの作成と対象ファイルのリスト出力のみを行う"
     )
 
     args = parser.parse_args()
 
-    if not os.environ.get("ANTHROPIC_API_KEY"):
+    if not args.dry_run and not os.environ.get("ANTHROPIC_API_KEY"):
         raise ValueError("ANTHROPIC_API_KEYが設定されていません。環境変数を設定してください。")
 
-    main(args.folder_path, args.output, args.exclude, args.prompt, args.dry_run)
+    main(args.folder_path, args.exclude, args.prompt, args.dry_run)
