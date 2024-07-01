@@ -62,9 +62,10 @@ AIを活用してプロジェクトのコードベースを分析し、ファイ
 
 ## 参考
 
-[sample.md](sample.md)は[tegnike/aituber-kit](https://github.com/tegnike/aituber-kit)の実行結果です。
+[sample.md](sample.md) は [tegnike/aituber-kit(v1.24.0)](https://github.com/tegnike/aituber-kit) の実行結果です。
 
 - 対象ファイル数: 95
+- 出力行数: 1,575
 - 実行時間: 494.41秒
 - API費用: $0.69
 
