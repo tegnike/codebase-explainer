@@ -22,9 +22,19 @@ AIを活用してプロジェクトのコードベースを分析し、ファイ
    ```
 
 2. 環境変数に `ANTHROPIC_API_KEY` を設定します：
-   ```
-   export ANTHROPIC_API_KEY=your_api_key_here
-   ```
+   - Linuxまたは macOS の場合：
+     ```
+     export ANTHROPIC_API_KEY=your_api_key_here
+     ```
+   - Windows の場合：
+     - コマンドプロンプトの場合：
+       ```
+       set ANTHROPIC_API_KEY=your_api_key_here
+       ```
+     - PowerShell の場合：
+       ```
+       $env:ANTHROPIC_API_KEY = "your_api_key_here"
+       ```
 
 3. まず、dry-runモードでスクリプトを実行して.projectignoreファイルを作成します：
    ```
