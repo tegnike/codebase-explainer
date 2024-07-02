@@ -184,35 +184,10 @@ def is_text_file(file_path: str, sample_size: int = 1024) -> bool:
         return False
 
 
-def get_functions(file_path: str) -> List[str]:
-    """
-    指定されたPythonファイル内の関数名のリストを返す。
-
-    Args:
-        file_path (str): 分析するPythonファイルのパス
-
-    Returns:
-        List[str]: ファイル内の関数名のリスト
-    """
-    with open(file_path, "r") as f:
-        content = f.read()
-
-    functions = []
-    try:
-        tree = ast.parse(content)
-        for node in ast.walk(tree):
-            if isinstance(node, ast.FunctionDef):
-                functions.append(node.name)
-    except:
-        pass  # ファイルがPythonでない場合や解析エラーの場合は無視
-    return functions
-
-
 def get_file_description(
     client: anthropic.Client,
     file_path: str,
     folder_path: str,
-    functions: List[str],
     prompt_template: str,
 ) -> str:
     """
@@ -222,7 +197,6 @@ def get_file_description(
         client (anthropic.Client): Anthropic APIクライアント
         file_path (str): 分析するファイルのパス
         folder_path (str): プロジェクトのベースパス
-        functions (List[str]): ファイル内の関数名のリスト
         prompt_template (str): 説明生成に使用するプロンプトのテンプレート
 
     Returns:
@@ -231,7 +205,7 @@ def get_file_description(
     with open(file_path, "r") as f:
         content = f.read()
 
-    prompt = prompt_template.format(functions=", ".join(functions), content=content)
+    prompt = prompt_template.format(content=content)
 
     response = client.messages.create(
         model="claude-3-5-sonnet-20240620",
@@ -400,9 +374,8 @@ def main(
             for file_path in target_files:
                 try:
                     relative_path = os.path.relpath(file_path, folder_path)
-                    functions = get_functions(file_path)
                     description = get_file_description(
-                        client, file_path, folder_path, functions, prompt_template
+                        client, file_path, folder_path, prompt_template
                     )
                     print(f"  処理完了: {relative_path}", file=sys.stderr)
                     f.write(f"{description}\n")
@@ -425,25 +398,45 @@ if __name__ == "__main__":
     parser.add_argument(
         "--prompt",
         default="""
-以下のファイルの内容を分析し、次の形式でMarkdown形式の説明を提供してください：
+あなたは、プログラミングファイルの内容を分析し、その構造と機能を簡潔に説明するAIアシスタントです。以下の指示に従って、与えられたファイルの内容を分析し、Markdown形式で説明を提供してください。
 
+まず、分析対象のファイル内容を以下に示します：
+
+<file_content>
+{content}
+</file_content>
+
+このファイルの内容を注意深く分析し、以下の手順で説明を作成してください：
+
+1. ファイル全体の概要を把握します。
+2. インポートされているモジュールを特定します。
+3. 定義されている関数を見つけ、各関数の目的を理解します。
+
+分析が完了したら、以下の形式でMarkdown形式の説明を提供してください：
+
+<answer>
 ### File Description
-ファイルの全体的な説明（2-5文程度）
+ファイルの全体的な説明を2〜5文程度で記述してください。ファイルの主な目的、機能、および重要な特徴を含めてください。
 
 ### Imported Modules
 - モジュール1
 - モジュール2
-...
+（以下、インポートされているすべてのモジュールをリストアップしてください）
 
 ### Functions
 - 関数名1: 簡潔な説明（1-2文）
 - 関数名2: 簡潔な説明（1-2文）
-...
+（以下、ファイル内のすべての関数について同様に記述してください）
+</answer>
 
-分析対象のファイル内容：
-```
-{content}
-```
+注意事項：
+- 説明は日本語で提供してください。
+- ファイルの内容を正確に反映させ、重要な情報を漏らさないようにしてください。
+- 専門用語や技術的な概念については、可能な限り分かりやすく説明してください。
+- 関数の説明は簡潔でありながら、その主な目的や機能が伝わるようにしてください。
+- コメントや文字列内の日本語はそのまま使用し、適切に説明に組み込んでください。
+
+以上の指示に従って、与えられたファイルの内容を分析し、Markdown形式の説明を提供してください。
 """,
         help="説明生成に使用するプロンプトのテンプレート",
     )
