@@ -177,8 +177,6 @@ def is_text_file(file_path: str, sample_size: int = 1024) -> bool:
         if result["encoding"] is None:
             return False
 
-        # テキストとして解読できるかチェック
-        sample.decode(result["encoding"])
         return True
     except (UnicodeDecodeError, IOError):
         return False
