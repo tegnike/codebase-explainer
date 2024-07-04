@@ -288,9 +288,13 @@ def main(
     excluded_files = []
     non_text_files = []
     empty_files = []
+    ignored_by_projectignore = []
 
     print("ファイルをスキャン中...", file=sys.stderr)
     for root, dirs, files in os.walk(folder_path, topdown=True):
+        rel_root = os.path.relpath(root, folder_path)
+
+        # ディレクトリのチェック
         dirs[:] = [
             d
             for d in dirs
@@ -298,6 +302,13 @@ def main(
                 os.path.join(root, d), gitignore_spec, folder_path
             )
         ]
+        for d in dirs[:]:
+            if is_ignored_by_projectignore(
+                os.path.join(root, d), projectignore_spec, folder_path
+            ):
+                ignored_by_projectignore.append(os.path.join(rel_root, d))
+                dirs.remove(d)
+
         for file in files:
             file_path = os.path.join(root, file)
             relative_path = os.path.relpath(file_path, folder_path)
@@ -346,7 +357,7 @@ def main(
             print(os.path.relpath(file, folder_path))
 
         print("\n除外されたファイルの詳細:")
-        print("\n.projectignoreにより無視されたファイル:")
+        print("\n.projectignoreにより無視されたファイル・フォルダ:")
         for file in ignored_by_projectignore:
             print(f"  {file}")
         print("\n除外された拡張子のファイル:")
